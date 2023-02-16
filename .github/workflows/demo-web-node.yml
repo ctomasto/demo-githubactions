@@ -16,12 +16,9 @@ jobs:
         uses: ./.github/actions/nodejs-npm-action
 
       - name: Install AWS CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip
-          pip3 install awscli --upgrade --user
+        uses: ./.github/actions/aws-cli-action
 
-      - name: Download artifact and store in s3
+      - name: Store in s3
         run: |
           aws s3 sync build s3://general-storage-app --delete --region us-east-1
         env:

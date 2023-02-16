@@ -1,5 +1,5 @@
 name: "Builds React App"
-description: "Builds an Angular App with pnpm and turborepo"
+description: "Builds a React app with npm"
 
 runs:
   using: composite

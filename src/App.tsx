@@ -51,13 +51,13 @@ const TodosComponent: React.FC<{
   deleteTodos: (id: number) => void
 }> = ({todos, toggleTodos, deleteTodos}) => {
   const deleteTodo = (id: number) => {
-    if (window.confirm(`Are you sure you want to delete todo?`)) {
+    if (window.confirm(`Seguro?`)) {
       deleteTodos(id);
     }
   }
   return (
     <div className="section__todos">
-    <h2>Todos</h2>
+    <h2>Seleccionados</h2>
     {todos.todos.length ? <ul className="todos">
       {todos.todos.map(todo => (
         <li key={todo.id}>
@@ -79,7 +79,7 @@ const AddTodoComponent = ({addTodos} : {addTodos: (text: string) => void}) => {
   const submit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (!todo) {
-      alert("Please enter a todo");
+      alert("Please enter a text");
     } else {
       addTodos(todo);
       setTodo("");

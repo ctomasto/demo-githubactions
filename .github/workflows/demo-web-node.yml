@@ -32,7 +32,7 @@ jobs:
 
       - name: Download artifact and store in s3
         run: |
-          aws s3 sync dist s3://general-storage-app/react-app --delete --region us-east-1
+          aws s3 sync build s3://general-storage-app/react-app --delete --region us-east-1
         env:
           AWS_ACCESS_KEY_ID: "AKIAZZR2XFGKH2OHWE5R"
           AWS_SECRET_ACCESS_KEY: "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"

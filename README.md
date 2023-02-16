@@ -1,2 +1,2 @@
-## Demo React app
+## Learning github actions
 This is a demo React app

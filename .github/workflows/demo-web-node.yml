@@ -15,6 +15,25 @@ jobs:
       - name: Build action
         uses: ./.github/actions/nodejs-npm-action
 
+      - name: Upload artifact for deployment job
+          uses: actions/upload-artifact@v3
+          with:
+            name: demo-app
+            path: ./build
+
+  deploy-app:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+    steps:
+      - name: Checkout Action
+        uses: actions/checkout@v3
+
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: demo-app
+          path: build
+
       - name: Install AWS CLI
         uses: ./.github/actions/aws-cli-action
 

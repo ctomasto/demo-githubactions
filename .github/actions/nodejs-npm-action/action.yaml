@@ -4,9 +4,6 @@ description: "Builds an Angular App with pnpm and turborepo"
 runs:
   using: composite
   steps:
-    - uses: pnpm/action-setup@v2
-      with:
-        version: 7.27.0
 
     - name: Set up Node.js
       uses: actions/setup-node@v3

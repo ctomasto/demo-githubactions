@@ -16,10 +16,10 @@ jobs:
         uses: ./.github/actions/nodejs-npm-action
 
       - name: Upload artifact for deployment job
-          uses: actions/upload-artifact@v3
-          with:
-            name: demo-app
-            path: ./build
+        uses: actions/upload-artifact@v3
+        with:
+          name: demo-app
+          path: ./build
 
   deploy-app:
     runs-on: ubuntu-latest

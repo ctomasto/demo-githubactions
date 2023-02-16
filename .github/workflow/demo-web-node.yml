@@ -1,0 +1,38 @@
+on:
+  push:
+    branches: [main]
+
+permissions: read-all
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+    steps:
+      - name: Checkout Action
+        uses: actions/checkout@v3
+
+      - name: Build action
+        uses: ./.github/actions/nodejs-npm-action
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install awscli --upgrade --user
+
+  deploy-app:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: ${{ github.ref_name }}
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - name: Checkout Action
+        uses: actions/checkout@v3
+
+      - name: Download artifact and store in s3
+        run: |
+          aws s3 sync dist s3://general-storage-app/react-app --delete --region us-east-1
+        env:
+          AWS_ACCESS_KEY_ID: "AKIAZZR2XFGKH2OHWE5R"
+          AWS_SECRET_ACCESS_KEY: "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"

@@ -1,0 +1,20 @@
+name: "Builds React App"
+description: "Builds an Angular App with pnpm and turborepo"
+
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 7.27.0
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "14.x"
+
+    - name: Install and build
+      shell: bash
+      run: |
+        npm install
+        npm run build
